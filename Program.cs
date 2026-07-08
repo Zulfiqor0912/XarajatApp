@@ -1,7 +1,11 @@
+using XarajatApp.Repositories;
+using XarajatApp.Repositories.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
@@ -22,7 +26,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=User}/{action=Registration}/{id?}")
+    pattern: "{controller=User}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 

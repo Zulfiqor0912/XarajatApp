@@ -1,11 +1,12 @@
 ﻿using XarajatApp.Models;
-using XarajatApp.ViewModel;
+using XarajatApp.Results;
+using XarajatApp.ViewModels;
 
 namespace XarajatApp.Repositories.Interface;
 
 public interface IUserRepository
 {
     public Task<bool> Register(RegisterViewModel registerViewModel);
-    public Task<bool> Login(string username, string password);
+    public Task<Result> Login(LoginViewModel loginViewModel);
     public Task<List<User>> GetAllUsers();
 }

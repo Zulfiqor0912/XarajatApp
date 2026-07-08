@@ -2,7 +2,8 @@
 using System.Text.Json;
 using XarajatApp.Models;
 using XarajatApp.Repositories.Interface;
-using XarajatApp.ViewModel;
+using XarajatApp.Results;
+using XarajatApp.ViewModels;
 
 namespace XarajatApp.Repositories;
 
@@ -28,12 +29,57 @@ public class UserRepository : IUserRepository
         return users;
     }
 
-    public Task<bool> Login(string username, string password)
+    public async Task<Result> Login(LoginViewModel loginViewModel)
     {
-        throw new NotImplementedException();
+        if (loginViewModel.Username is null || loginViewModel.Password is null)
+        {
+            return new Result
+            {
+                Succed = false,
+                Message = "Username yoki password kiritilmagan."
+            };
+        }
+        else
+        {
+            users = await GetAllUsers();
+
+            var user = users
+                .FirstOrDefault(u => u.Username == loginViewModel.Username);
+
+            if (user is null)
+            {
+                return new Result
+                {
+                    Succed = false,
+                    Message = "Bunday foydalanuvchi hali royhatdan otmagan"
+                };
+            }
+            else
+            {
+                var hasher = new PasswordHasher<object>();
+                var result = hasher.VerifyHashedPassword(null, user.PasswordHash, loginViewModel.Password);
+
+                if (result == PasswordVerificationResult.Success)
+                {
+                    return new Result
+                    {
+                        Succed = true,
+                        Message = "Login "
+                    };
+                }
+                else
+                {
+                    return new Result
+                    {
+                        Succed = false,
+                        Message = "Parol noto'g'ri kiritilgan"
+                    };
+                }
+            }
+        }
     }
 
-    public Task<bool> Register(RegisterViewModel registerViewModel)
+    public async Task<bool> Register(RegisterViewModel registerViewModel)
     {
         var hasher = new PasswordHasher<object>();
         string hash = hasher.HashPassword(null, registerViewModel.Password);
@@ -47,6 +93,15 @@ public class UserRepository : IUserRepository
             CreatedDate = DateTime.Now
         };
 
+        users = await GetAllUsers();
 
+        if (users.Contains(user)) return false;
+        else
+        {
+            users.Add(user);
+            var json = JsonSerializer.Serialize(users);
+            File.WriteAllText(Path, json);
+            return true;
+        }
     }
 }

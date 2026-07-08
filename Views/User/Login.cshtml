@@ -1,8 +1,8 @@
-﻿@model XarajatApp.ViewModels.RegisterViewModel
+﻿@model XarajatApp.ViewModels.LoginViewModel
 
-<h2>Ro'yxatdan o'tish</h2>
+<h2>Login</h2>
 
-<form asp-action="Registration" method="post">
+<form asp-action="Login" method="post">
 
     <div class="mb-3">
         <label asp-for="Username" class="form-label"></label>
@@ -11,18 +11,26 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Fullname" class="form-label"></label>
-        <input asp-for="Fullname" class="form-control" />
-        <span asp-validation-for="Fullname" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
         <label asp-for="Password" class="form-label"></label>
         <input asp-for="Password" type="password" class="form-control" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Saqlash</button>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">
+            Login
+        </button>
+
+        <a asp-action="Registration"
+           asp-controller="User"
+           class="btn btn-success">
+            Registratsiya
+        </a>
+    </div>
+
+    @* <button type="submit" class="btn btn-primary">Login</button> *@
+
+
 
 </form>
 
