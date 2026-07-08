@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XarajatApp.Models
 {
-    public class Team
+    public class Group
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
