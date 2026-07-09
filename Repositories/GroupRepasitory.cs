@@ -10,15 +10,49 @@ namespace XarajatApp.Repositories;
 public class GroupRepasitory : IGroupRepasitory
 {
     private readonly string PathG = Path.Combine(AppContext.BaseDirectory, "group.json");
+    private static readonly string PathGM = Path.Combine(AppContext.BaseDirectory, "group_members.json");
+
     private List<Group> groups;
+    private List<GroupMember> groupMembers;
 
     //public GroupRepasitory()
     //{
         
     //}
-    public Task<Result> AddTeam(string teamName, string username, string password)
+    public async Task<Result> AddTeam(string teamName, string username, string password)
     {
-        throw new NotImplementedException();
+        var team = await GetTeamByName(teamName);
+        if (team.Name != null)
+        {
+            var hasher = new PasswordHasher<object>();
+            var result = hasher.VerifyHashedPassword(null, team.PasswordHash, password);
+
+            if (result == PasswordVerificationResult.Success)
+            {
+                var users = await 
+                return new Result
+                {
+                    Succed = true,
+                    Message = $"->{teamName}<-guruhiga yangi foydalanuvchi >{username}< qo'shildi"
+                };
+            }
+            else
+            {
+                return new Result
+                {
+                    Succed = false,
+                    Message = $"Parol xato"
+                };
+            }
+        }
+        else
+        {
+            return new Result
+            {
+                Succed = false,
+                Message = "Bunday guruh mavjud emas!"
+            };
+        }
     }
 
     public async Task<Result> CreateGroup(CreateGroupViewModel createGroup)
@@ -84,9 +118,11 @@ public class GroupRepasitory : IGroupRepasitory
         return groups;
     }
 
-    public Task<Group> GetTeamByName(string teamName)
+    public async Task<Group> GetTeamByName(string teamName)
     {
-        throw new NotImplementedException();
+        groups = await GetAllTeam();
+        var group = groups.FirstOrDefault(g => g.Name == teamName);
+        return group!;
     }
 
     public async Task<GetGroupsResult> ShowAllGroups()
@@ -117,5 +153,17 @@ public class GroupRepasitory : IGroupRepasitory
                 Message = "Guruh mavjud emas!"
             };
         }
+    }
+
+    public async Task<List<GroupMember>> GetAllMembers()
+    {
+        if (!File.Exists(PathGM)) return new List<GroupMember>();
+
+        var json = await File.ReadAllTextAsync(PathGM);
+        if (string.IsNullOrWhiteSpace(json))
+            return new List<GroupMember>();
+
+        groupMembers = JsonSerializer.Deserialize<List<GroupMember>>(json) ?? new List<GroupMember>();
+        return groupMembers;
     }
 }

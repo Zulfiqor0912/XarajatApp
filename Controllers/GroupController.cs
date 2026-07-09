@@ -73,5 +73,16 @@ namespace XarajatApp.Controllers
                 return View(new List<GetAllGroupsViewModel>());
             }
         }
+
+        public async Task<IActionResult> AddGroup()
+        {
+            return RedirectToAction(nameof(ShowAllUsers));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUserToGroup(Guid userId, Guid groupId)
+        {
+            
+        }
     }
 }
