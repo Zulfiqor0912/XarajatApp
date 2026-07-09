@@ -8,7 +8,9 @@ using XarajatApp.ViewModels;
 
 namespace XarajatApp.Controllers;
 
-public class UserController(IUserRepository userRepository) : Controller
+public class UserController(
+    IUserRepository userRepository,
+    IGroupRepasitory groupRepasitory) : Controller
 {
     public IActionResult Index()
     {
@@ -25,7 +27,7 @@ public class UserController(IUserRepository userRepository) : Controller
         var b = await userRepository.Register(registerViewModel);
         if (b)
         {
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         else
         {
@@ -35,7 +37,7 @@ public class UserController(IUserRepository userRepository) : Controller
     }
 
 
-    public async Task Login()
+    public IActionResult Login()
     {
         return View();
     }
@@ -43,9 +45,10 @@ public class UserController(IUserRepository userRepository) : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
+        //return RedirectToAction("Group");
         var result = await userRepository.Login(loginViewModel);
         if (result.Succed)
-            return RedirectToAction("Group");
+            return RedirectToAction("Menu", "Group");
         else
         {
             TempData["Error"] = result.Message;

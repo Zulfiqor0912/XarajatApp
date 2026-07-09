@@ -1,0 +1,57 @@
+﻿@model List<XarajatApp.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Barcha foydalanuvchilar";
+}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>👥 Barcha foydalanuvchilar</h2>
+
+        <a asp-controller="Group"
+           asp-action="Menu"
+           class="btn btn-secondary">
+            ⬅️ Orqaga
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-hover shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>To'liq ism</th>
+                    <th>Ro'yxatdan o'tgan sana</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    int number = 1;
+                }
+
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@number</td>
+                        <td>@user.Username</td>
+                        <td>@user.Fullname</td>
+                        <td>@user.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    </tr>
+
+                    number++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Hozircha ro'yxatdan o'tgan foydalanuvchilar mavjud emas.
+        </div>
+    }
+
+</div>

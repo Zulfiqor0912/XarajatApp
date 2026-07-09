@@ -1,0 +1,61 @@
+﻿@model List<XarajatApp.ViewModels.GetAllGroupsViewModel>
+
+@{
+    ViewData["Title"] = "Barcha guruhlar";
+}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>📋 Barcha guruhlar</h2>
+
+        <a asp-action="Menu"
+           asp-controller="Group"
+           class="btn btn-secondary">
+            ⬅️ Orqaga
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-hover table-bordered shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:70px;">#</th>
+                    <th>Guruh nomi</th>
+                    <th style="width:180px;">Amallar</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    int number = 1;
+                }
+
+                @foreach (var group in Model)
+                {
+                    <tr>
+                        <td>@number</td>
+                        <td>@group.Name</td>
+                        <td>
+                            <a asp-action="JoinGroup"
+                               asp-route-groupName="@group.Name"
+                               class="btn btn-success btn-sm">
+                                Qo'shilish
+                            </a>
+                        </td>
+                    </tr>
+
+                    number++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Hozircha guruhlar mavjud emas.
+        </div>
+    }
+
+</div>

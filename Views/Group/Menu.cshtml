@@ -1,0 +1,38 @@
+﻿<div class="container mt-5">
+    <h2>Xush kelibsiz!</h2>
+
+    <div class="row mt-4">
+
+        <div class="col-md-6 mb-3">
+            <a asp-action="CreateGroup"
+               asp-controller="Group"
+               class="btn btn-primary w-100 p-4">
+                ➕ Yangi guruh yaratish
+            </a>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <a asp-action="JoinGroup"
+               asp-controller="Group"
+               class="btn btn-success w-100 p-4">
+                🔑 Guruhga qo'shilish
+            </a>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <a asp-action="GetAllGroups"
+               asp-controller="Group"
+               class="btn btn-warning w-100 p-4">
+                📋 Barcha guruhlar
+            </a>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <a asp-action="ShowAllUsers"
+               asp-controller="Group"
+               class="btn btn-info w-100 p-4">
+                👥 Foydalanuvchilar
+            </a>
+        </div>
+    </div>
+</div>

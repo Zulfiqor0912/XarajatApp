@@ -12,10 +12,10 @@ public class GroupRepasitory : IGroupRepasitory
     private readonly string PathG = Path.Combine(AppContext.BaseDirectory, "group.json");
     private List<Group> groups;
 
-    public GroupRepasitory()
-    {
+    //public GroupRepasitory()
+    //{
         
-    }
+    //}
     public Task<Result> AddTeam(string teamName, string username, string password)
     {
         throw new NotImplementedException();
@@ -58,7 +58,7 @@ public class GroupRepasitory : IGroupRepasitory
                 {
                     Succed = false,
                     Message = "Bu nomdagi guruh mavjud"
-                }
+                };
             }
             
         }
@@ -68,7 +68,7 @@ public class GroupRepasitory : IGroupRepasitory
             {
                 Succed = false,
                 Message = "Gruruh nomi yoki parol kiritilmagan"
-            }
+            };
         }
     }
 
@@ -76,7 +76,7 @@ public class GroupRepasitory : IGroupRepasitory
     {
         if (!File.Exists(PathG)) return new List<Group>();
 
-        string json = await File.ReadAllTextAsync(Path);
+        string json = await File.ReadAllTextAsync(PathG);
 
         if (string.IsNullOrWhiteSpace(json)) return new List<Group>();
 
@@ -87,5 +87,35 @@ public class GroupRepasitory : IGroupRepasitory
     public Task<Group> GetTeamByName(string teamName)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<GetGroupsResult> ShowAllGroups()
+    {
+        groups = await GetAllTeam();
+        if (groups != null)
+        {
+            List<GetAllGroupsViewModel> allGroups = new List<GetAllGroupsViewModel>();
+            foreach (var item in groups)
+            {
+                allGroups.Add(new GetAllGroupsViewModel
+                {
+                    Name = item.Name,
+                });
+            }
+            return new GetGroupsResult
+            {
+                Succed = true,
+                Message = "Barcha guruhlar",
+                GroupsViewModel = allGroups
+            };
+        }
+        else
+        {
+            return new GetGroupsResult
+            {
+                Succed = false,
+                Message = "Guruh mavjud emas!"
+            };
+        }
     }
 }

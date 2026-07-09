@@ -10,4 +10,5 @@ public interface IGroupRepasitory
     public Task<Result> AddTeam(string teamName, string username, string password);
     public Task<Group> GetTeamByName(string teamName);
     public Task<List<Group>> GetAllTeam();
+    public Task<GetGroupsResult> ShowAllGroups();
 }
