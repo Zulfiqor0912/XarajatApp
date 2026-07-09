@@ -79,10 +79,35 @@ namespace XarajatApp.Controllers
             return RedirectToAction(nameof(ShowAllUsers));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUserToGroup(Guid userId, Guid groupId)
+        public async Task<IActionResult> JoinGroup(string groupname)
         {
-            
+            var model = new JoinGroupViewModel
+            {
+                Groupname = groupname
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> JoinGroup(JoinGroupViewModel joinGroupViewModel)
+        {
+            var usernameStr = HttpContext.Session.GetString("Username");
+            if (usernameStr is null)
+                return RedirectToAction("Login", "User");
+
+            joinGroupViewModel.Username = usernameStr;
+
+            var result = await groupRepasitory.AddTeam(joinGroupViewModel);
+
+            if (result.Succed)
+            {
+                return RedirectToAction("ExpenditureMenu", "Expenditure");
+            }
+            else
+            {
+                TempData["Error"] = result.Message;
+                return View();
+            }
         }
     }
 }

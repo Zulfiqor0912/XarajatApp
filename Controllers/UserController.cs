@@ -48,7 +48,10 @@ public class UserController(
         //return RedirectToAction("Group");
         var result = await userRepository.Login(loginViewModel);
         if (result.Succed)
+        {
+            HttpContext.Session.SetString("Username", loginViewModel.Username);
             return RedirectToAction("Menu", "Group");
+        }
         else
         {
             TempData["Error"] = result.Message;

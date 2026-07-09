@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Guruhga xush kelibsiz";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h2>💰 Guruh menyusi</h2>
+        <p class="text-muted">Kerakli amalni tanlang</p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <a asp-controller="Expenditure"
+               asp-action="CreateExpenditure"
+               class="btn btn-primary w-100 py-4 fs-5">
+                💸 Xarajat qilish
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a asp-controller="Expenditure"
+               asp-action="Calculate"
+               class="btn btn-success w-100 py-4 fs-5">
+                🧮 Hisoblash
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a asp-controller="Expenditure"
+               asp-action="History"
+               class="btn btn-warning w-100 py-4 fs-5">
+                📜 Xarajatlar tarixi
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a asp-controller="Group"
+               asp-action="Members"
+               class="btn btn-info w-100 py-4 fs-5">
+                👥 Guruh a'zolari
+            </a>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+        <a asp-controller="Group"
+           asp-action="GetAllGroups"
+           class="btn btn-secondary">
+            ⬅️ Guruhlar ro'yxatiga qaytish
+        </a>
+    </div>
+
+</div>

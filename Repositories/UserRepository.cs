@@ -72,7 +72,8 @@ public class UserRepository : IUserRepository
                     return new Result
                     {
                         Succed = false,
-                        Message = "Parol noto'g'ri kiritilgan"
+                        Message = "Parol noto'g'ri kiritilgan",
+                        UserId = user.Id
                     };
                 }
             }

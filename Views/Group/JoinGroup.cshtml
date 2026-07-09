@@ -1,0 +1,14 @@
+﻿@model JoinGroupViewModel
+
+<form asp-action="JoinGroup" method="post">
+
+    <input type="hidden" asp-for="Groupname" />
+
+    <label>Parol</label>
+    <input asp-for="Password" class="form-control" />
+
+    <button type="submit" class="btn btn-success">
+        Qo'shilish
+    </button>
+
+</form>

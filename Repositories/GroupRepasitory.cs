@@ -19,21 +19,33 @@ public class GroupRepasitory : IGroupRepasitory
     //{
         
     //}
-    public async Task<Result> AddTeam(string teamName, string username, string password)
+    public async Task<Result> AddTeam(JoinGroupViewModel joinGroupViewModel)
     {
-        var team = await GetTeamByName(teamName);
+        var team = await GetTeamByName(joinGroupViewModel.Groupname);
         if (team.Name != null)
         {
             var hasher = new PasswordHasher<object>();
-            var result = hasher.VerifyHashedPassword(null, team.PasswordHash, password);
+            var result = hasher.VerifyHashedPassword(null, team.PasswordHash, joinGroupViewModel.Password);
 
             if (result == PasswordVerificationResult.Success)
             {
-                var users = await 
+                groupMembers = await GetAllMembers();
+                var groupmember = new GroupMember
+                {
+                    Id = Guid.NewGuid(),
+                    Username = joinGroupViewModel.Username,
+                    Groupname = joinGroupViewModel.Groupname
+                };
+
+                groupMembers.Add(groupmember);
+
+                string json = JsonSerializer.Serialize<List<GroupMember>>(groupMembers);
+                await File.WriteAllTextAsync(PathGM, json);
+
                 return new Result
                 {
                     Succed = true,
-                    Message = $"->{teamName}<-guruhiga yangi foydalanuvchi >{username}< qo'shildi"
+                    Message = $"->{joinGroupViewModel.Groupname}<-guruhiga yangi foydalanuvchi >{joinGroupViewModel.Username}< qo'shildi"
                 };
             }
             else
