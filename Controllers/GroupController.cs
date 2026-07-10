@@ -5,7 +5,7 @@ using XarajatApp.ViewModels;
 namespace XarajatApp.Controllers
 {
     public class GroupController(
-        IGroupRepasitory groupRepasitory,
+        IGroupRepository groupRepasitory,
         IUserRepository userRepository
         ) : Controller
 

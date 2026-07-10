@@ -7,9 +7,9 @@ using XarajatApp.ViewModels;
 
 namespace XarajatApp.Repositories;
 
-public class GroupRepasitory : IGroupRepasitory
+public class GroupRepository : IGroupRepository
 {
-    private readonly string PathG = Path.Combine(AppContext.BaseDirectory, "group.json");
+    private static readonly string PathG = Path.Combine(AppContext.BaseDirectory, "group.json");
     private static readonly string PathGM = Path.Combine(AppContext.BaseDirectory, "group_members.json");
 
     private List<Group> groups;

@@ -4,7 +4,7 @@ using XarajatApp.ViewModels;
 
 namespace XarajatApp.Repositories.Interface;
 
-public interface IGroupRepasitory
+public interface IGroupRepository
 {
     public Task<Result> CreateGroup(CreateGroupViewModel createGroup);
     public Task<Result> AddTeam(JoinGroupViewModel joinGroupViewModel);

@@ -10,7 +10,7 @@ namespace XarajatApp.Controllers;
 
 public class UserController(
     IUserRepository userRepository,
-    IGroupRepasitory groupRepasitory) : Controller
+    IGroupRepository groupRepasitory) : Controller
 {
     public IActionResult Index()
     {
