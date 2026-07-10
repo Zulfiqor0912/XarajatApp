@@ -1,11 +1,16 @@
 ﻿@model JoinGroupViewModel
+@{
+    ViewData["Title"] = $"({Model.Groupname}) guruhiga qo'shilish";
+}
 
 <form asp-action="JoinGroup" method="post">
+    
+    <input asp-for="Groupname"  type="hidden" />
 
-    <input type="hidden" asp-for="Groupname" />
-
-    <label>Parol</label>
-    <input asp-for="Password" class="form-control" />
+    <div class="mb-3">
+        <label>Parol</label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
 
     <button type="submit" class="btn btn-success">
         Qo'shilish

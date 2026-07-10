@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Guruhga xush kelibsiz";
-}
+﻿@model ExpenditureMenuViewModel
 
 <div class="container mt-5">
 
@@ -36,8 +34,9 @@
         </div>
 
         <div class="col-md-6">
-            <a asp-controller="Group"
-               asp-action="Members"
+            <a asp-controller="Expenditure"
+               asp-action="ShowAllGroupMembers"
+               asp-route-groupname="@Model.Groupname"
                class="btn btn-info w-100 py-4 fs-5">
                 👥 Guruh a'zolari
             </a>

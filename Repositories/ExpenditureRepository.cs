@@ -19,6 +19,7 @@ public class ExpenditureRepository : IExpenditureRepository
         var usergroup = JsonSerializer.Deserialize<List<GroupMember>>(json) ?? new List<GroupMember>();
         var groupmembers = usergroup
             .Where(g => g.Groupname == groupname)
+            .DistinctBy(g => g.Username)
             .ToList();
 
         return groupmembers;

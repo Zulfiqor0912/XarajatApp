@@ -92,6 +92,7 @@ namespace XarajatApp.Controllers
         public async Task<IActionResult> JoinGroup(JoinGroupViewModel joinGroupViewModel)
         {
             var usernameStr = HttpContext.Session.GetString("Username");
+            
             if (usernameStr is null)
                 return RedirectToAction("Login", "User");
 
@@ -101,12 +102,14 @@ namespace XarajatApp.Controllers
 
             if (result.Succed)
             {
+                Console.WriteLine(joinGroupViewModel.Groupname);
+                HttpContext.Session.SetString("Groupname", joinGroupViewModel.Groupname);
                 return RedirectToAction("ExpenditureMenu", "Expenditure");
             }
             else
             {
                 TempData["Error"] = result.Message;
-                return View();
+                return View(joinGroupViewModel);
             }
         }
     }

@@ -1,5 +1,7 @@
 using XarajatApp.Repositories;
 using XarajatApp.Repositories.Interface;
+using XarajatApp.Services;
+using XarajatApp.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 builder.Services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
+
+builder.Services.AddScoped<IExpenditureService, ExpenditureService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
