@@ -1,0 +1,98 @@
+﻿@model List<XarajatApp.ViewModels.CalculateExpendituresViewModel>
+
+@{
+    ViewData["Title"] = "Hisob-kitob";
+}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">
+        💰 Guruh Hisob-kitobi
+    </h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            Hisob-kitob uchun ma'lumot topilmadi.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive shadow rounded">
+
+            <table class="table table-bordered table-hover align-middle text-center">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>F.I.Sh</th>
+                        <th>Username</th>
+                        <th>Har Bir Kishining Ulushi</th>
+                        <th>Jami Xarajat</th>
+                        <th>Qo'shimcha xarajat qildingiz(Olishingiz kerak bo'lgan pul')</th>
+                        <th>Kam xarajat qildingiz(Berishingiz kerak bo'lgan pul')</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @{
+                        int index = 1;
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@index</td>
+
+                            <td>
+                                <strong>@item.Fullname</strong>
+                            </td>
+
+                            <td>
+                                @item.Username
+                            </td>
+
+                            <td class="text-primary fw-bold">
+                                @item.TotalCost.ToString("N0") so'm
+                            </td>
+
+                            <td>
+                                @item.TotalCostTeamMoney.ToString("N0") so'm
+                            </td>
+
+                            <td class="text-success fw-bold">
+                                @item.ToGetMoney.ToString("N0") so'm
+                            </td>
+
+                            <td class="text-danger fw-bold">
+                                @item.ToGiveMoney.ToString("N0") so'm
+                            </td>
+
+                        </tr>
+
+                        index++;
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a asp-action="ExpenditureMenu" class="btn btn-secondary">
+            ⬅ Orqaga
+        </a>
+    </div>
+
+</div>

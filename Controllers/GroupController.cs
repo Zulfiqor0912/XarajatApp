@@ -74,10 +74,10 @@ namespace XarajatApp.Controllers
             }
         }
 
-        public async Task<IActionResult> AddGroup()
-        {
-            return RedirectToAction(nameof(ShowAllUsers));
-        }
+        //public async Task<IActionResult> AddGroup()
+        //{
+        //    return RedirectToAction(nameof(ShowAllUsers));
+        //}
 
         public async Task<IActionResult> JoinGroup(string groupname)
         {

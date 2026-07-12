@@ -36,5 +36,53 @@ namespace XarajatApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateExpenditure(CreateExpenditureViewModel expenditureViewModel)
+        {
+            expenditureViewModel.TeamName = HttpContext.Session.GetString("Groupname") ?? "0";
+            var result = await expenditureService.CreateExpenditure(expenditureViewModel);
+            if (result.Succed)
+            {
+                return RedirectToAction("ExpenditureMenu");
+            }
+            else
+            {
+                TempData["Error"] = result.Succed;
+                return View(expenditureViewModel);
+            }
+        }
+
+        public async Task<IActionResult> ExpenditureHistory()
+        {
+            var groupname = HttpContext.Session.GetString("Groupname") ?? "0";
+            var result = await expenditureService.GetAllExpenditures(groupname);
+            if (result.Succed)
+            {
+                return View(result.GetAllExpenditures);
+            }
+            else
+            {
+                TempData["Error"] = result.Message;
+                return View();
+            }
+        }
+
+        public async Task<IActionResult> Calculate()
+        {
+
+            var result = await expenditureService.GetAllCalculateExpenditures(HttpContext.Session.GetString("Groupname") ?? "0");
+            if (result.Succed)
+            {
+                return View(result.AllCalculateExpenditures);
+            }
+            else
+            {
+                TempData["Error"] = result.Message;
+                return View(TempData);
+            }
+
+            
+        }
     }
 }

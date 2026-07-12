@@ -1,38 +1,96 @@
-﻿<div class="container mt-5">
-    <h2>Xush kelibsiz!</h2>
+﻿@{
+    ViewData["Title"] = "Guruhlar";
+}
 
-    <div class="row mt-4">
+<div class="container py-5">
 
-        <div class="col-md-6 mb-3">
-            <a asp-action="CreateGroup"
-               asp-controller="Group"
-               class="btn btn-primary w-100 p-4">
-                ➕ Yangi guruh yaratish
-            </a>
-        </div>
-
-        <div class="col-md-6 mb-3">
-            <a asp-action="AddGroup"
-               asp-controller="Group"
-               class="btn btn-success w-100 p-4">
-                🔑 Guruhga qo'shilish
-            </a>
-        </div>
-
-        <div class="col-md-6 mb-3">
-            <a asp-action="GetAllGroups"
-               asp-controller="Group"
-               class="btn btn-warning w-100 p-4">
-                📋 Barcha guruhlar
-            </a>
-        </div>
-
-        <div class="col-md-6 mb-3">
-            <a asp-action="ShowAllUsers"
-               asp-controller="Group"
-               class="btn btn-info w-100 p-4">
-                👥 Foydalanuvchilar
-            </a>
-        </div>
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">👋 Xush kelibsiz!</h2>
+        <p class="text-muted">
+            Quyidagi menyudan kerakli bo'limni tanlang.
+        </p>
     </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center p-4">
+
+                    <div class="display-4 mb-3">
+                        ➕
+                    </div>
+
+                    <h4 class="card-title">
+                        Yangi guruh
+                    </h4>
+
+                    <p class="text-muted">
+                        Yangi guruh yaratish va unga a'zolarni qo'shishni boshlang.
+                    </p>
+
+                    <a asp-action="CreateGroup"
+                       asp-controller="Group"
+                       class="btn btn-primary w-100">
+                        Guruh yaratish
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center p-4">
+
+                    <div class="display-4 mb-3">
+                        📋
+                    </div>
+
+                    <h4 class="card-title">
+                        Barcha guruhlar
+                    </h4>
+
+                    <p class="text-muted">
+                        Mavjud barcha guruhlarni ko'rish va ularga qo'shilish.
+                    </p>
+
+                    <a asp-action="GetAllGroups"
+                       asp-controller="Group"
+                       class="btn btn-warning w-100">
+                        Guruhlarni ko'rish
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center p-4">
+
+                    <div class="display-4 mb-3">
+                        👥
+                    </div>
+
+                    <h4 class="card-title">
+                        Foydalanuvchilar
+                    </h4>
+
+                    <p class="text-muted">
+                        Tizimdagi barcha foydalanuvchilar ro'yxatini ko'ring.
+                    </p>
+
+                    <a asp-action="ShowAllUsers"
+                       asp-controller="Group"
+                       class="btn btn-info w-100 text-white">
+                        Foydalanuvchilar
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>

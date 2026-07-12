@@ -1,36 +1,109 @@
 ﻿@model XarajatApp.ViewModels.RegisterViewModel
 
-<h2>Ro'yxatdan o'tish</h2>
+@{
+    ViewData["Title"] = "Registratsiya";
+}
 
-<form asp-action="Registration" method="post">
+<div class="container py-5">
 
-    <div class="mb-3">
-        <label asp-for="Username" class="form-label"></label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <div style="font-size:60px;">📝</div>
+                        <h2 class="fw-bold mt-2">Ro'yxatdan o'tish</h2>
+                        <p class="text-muted">
+                            Quyidagi ma'lumotlarni to'ldirib yangi hisob yarating.
+                        </p>
+                    </div>
+
+                    <form asp-action="Registration" method="post">
+
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label fw-semibold">
+                                Username
+                            </label>
+
+                            <input asp-for="Username"
+                                   class="form-control form-control-lg"
+                                   placeholder="Username kiriting" />
+
+                            <span asp-validation-for="Username"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Fullname" class="form-label fw-semibold">
+                                To'liq ism
+                            </label>
+
+                            <input asp-for="Fullname"
+                                   class="form-control form-control-lg"
+                                   placeholder="Ism va familiyangizni kiriting" />
+
+                            <span asp-validation-for="Fullname"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Password" class="form-label fw-semibold">
+                                Parol
+                            </label>
+
+                            <input asp-for="Password"
+                                   type="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Parol kiriting" />
+
+                            <span asp-validation-for="Password"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg">
+                                ✅ Ro'yxatdan o'tish
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+
+                            <span class="text-muted">
+                                Hisobingiz bormi?
+                            </span>
+
+                            <br />
+
+                            <a asp-action="Login"
+                               asp-controller="User"
+                               class="btn btn-outline-primary mt-3 px-4">
+                                Login
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Fullname" class="form-label"></label>
-        <input asp-for="Fullname" class="form-control" />
-        <span asp-validation-for="Fullname" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Password" class="form-label"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Saqlash</button>
-
-</form>
+</div>
 
 @if (TempData["Error"] != null)
 {
-    <script>
-        alert('@TempData["Error"]');
-    </script>
+    <div class="alert alert-danger mt-4 text-center">
+        @TempData["Error"]
+    </div>
 }
 
 @section Scripts {

@@ -9,4 +9,5 @@ public interface IUserRepository
     public Task<bool> Register(RegisterViewModel registerViewModel);
     public Task<Result> Login(LoginViewModel loginViewModel);
     public Task<List<User>> GetAllUsers();
+    public Task<User> GetUserByUsername(string username);
 }

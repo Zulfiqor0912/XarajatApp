@@ -1,44 +1,96 @@
 ﻿@model XarajatApp.ViewModels.LoginViewModel
 
-<h2>Login</h2>
+@{
+    ViewData["Title"] = "Login";
+}
 
-<form asp-action="Login" method="post">
+<div class="container py-5">
 
-    <div class="mb-3">
-        <label asp-for="Username" class="form-label"></label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+    <div class="row justify-content-center">
+
+        <div class="col-lg-5 col-md-7">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+                        <div style="font-size:60px;">🔐</div>
+                        <h2 class="fw-bold mt-2">Xush kelibsiz!</h2>
+                        <p class="text-muted">
+                            Hisobingizga kirish uchun ma'lumotlarni kiriting.
+                        </p>
+                    </div>
+
+                    <form asp-action="Login" method="post">
+
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label fw-semibold">
+                                Username
+                            </label>
+
+                            <input asp-for="Username"
+                                   class="form-control form-control-lg"
+                                   placeholder="Username kiriting" />
+
+                            <span asp-validation-for="Username"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Password" class="form-label fw-semibold">
+                                Parol
+                            </label>
+
+                            <input asp-for="Password"
+                                   type="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Parol kiriting" />
+
+                            <span asp-validation-for="Password"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg">
+                                Kirish
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+
+                            <span class="text-muted">
+                                Hisobingiz yo'qmi?
+                            </span>
+
+                            <br />
+
+                            <a asp-action="Registration"
+                               asp-controller="User"
+                               class="btn btn-success mt-3 px-4">
+                                Registratsiya
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Password" class="form-label"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <div class="d-flex gap-2">
-        <button type="submit" class="btn btn-primary">
-            Login
-        </button>
-
-        <a asp-action="Registration"
-           asp-controller="User"
-           class="btn btn-success">
-            Registratsiya
-        </a>
-    </div>
-
-    @* <button type="submit" class="btn btn-primary">Login</button> *@
-
-
-
-</form>
+</div>
 
 @if (TempData["Error"] != null)
 {
-    <script>
-        alert('@TempData["Error"]');
-    </script>
+    <div class="alert alert-danger mt-4 text-center">
+        @TempData["Error"]
+    </div>
 }
 
 @section Scripts {

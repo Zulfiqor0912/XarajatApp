@@ -29,3 +29,208 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.card {
+    border-radius: 18px;
+}
+
+.table tbody tr {
+    transition: .25s;
+}
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.005);
+    }
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.badge {
+    padding: 8px 12px;
+}
+
+.card-header {
+    border-bottom: 1px solid #ececec !important;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.table tbody tr {
+    transition: .25s;
+}
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.005);
+    }
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.badge {
+    padding: 8px 12px;
+}
+
+.card-header {
+    border-bottom: 1px solid #ececec !important;
+}
+
+.card {
+    transition: all .3s ease;
+    border-radius: 15px;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.15) !important;
+    }
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.display-4 {
+    font-size: 3rem;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+    }
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+.alert {
+    border-radius: 12px;
+}
+
+.member-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    transition: all .3s ease;
+    border: 1px solid #f1f1f1;
+}
+
+    .member-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 35px rgba(13,110,253,.15);
+    }
+
+.member-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#0d6efd,#4f8cff);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.member-info h5 {
+    margin-bottom: 4px;
+}
+
+.badge {
+    font-size: .85rem;
+}
+
+.menu-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    transition: .3s;
+    color: #212529;
+    border: 1px solid #ececec;
+    height: 100%;
+}
+
+    .menu-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 35px rgba(0,0,0,.15);
+        color: #212529;
+    }
+
+.menu-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.menu-card h4 {
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.menu-card p {
+    margin: 0;
+    color: #6c757d;
+}

@@ -105,4 +105,12 @@ public class UserRepository : IUserRepository
             return true;
         }
     }
+
+    public async Task<User> GetUserByUsername(string username)
+    {
+        users = await GetAllUsers();
+        var t = users
+            .FirstOrDefault(u => u.Username == username);
+        return t!;
+    }
 }
